@@ -31,7 +31,7 @@ function makeCake() {
 
 function makePie() {
   var updatePieStatus = updateStatus.bind(this);
-  updateCakeStatus("Prep")
+  updatePieStatus("Prep")
   pie.decorate = cake.decorate.bind(pie);
   mix.call(pie, updatePieStatus);
 }
@@ -40,11 +40,13 @@ function updateStatus(statusText) {
   this.getElementsByClassName("status")[0].innerText = statusText
 }
 
+
 function bake(updateFunction) {
   var status = "Baking at " + this.bakeTemp + " for " + this.bakeTime;
   setTimeout(() => {
     cool.call(this, updateFunction)
   }, 2000)
+  updateFunction(status)
 }
 
 function mix(updateFunction) {
@@ -68,8 +70,7 @@ function makeDessert() {
   //based on which link was clicked
   if (this.parentNode.id === 'cake') {
     makeCake.call(this.parentNode);
-  }
-  if (this.parentNode.id === 'pie') {
+  } else {
     makePie.call(this.parentNode);
   }
 }
