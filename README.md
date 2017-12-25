@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this lab, you'll use `this`, change a function's context, and write modular code. 
+In this lab, you'll use `this`, change a function's context, and write modular code.
 
 ## Introduction
 
@@ -11,6 +11,7 @@ In this lab, we're going to put your knowledge of `this`, `call`, `apply`, and `
 You'll have to fix some problems with the existing code (there may be some bugs!) and add some new code of your own to get the tests passing and get those desserts made!
 
 ![cake make](http://i.giphy.com/YniPMwzcXtt6g.gif)
+learn
 
 ## Instructions
 
