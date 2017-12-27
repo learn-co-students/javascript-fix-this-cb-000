@@ -59,14 +59,13 @@ function cool(updateFunction) {
   }, 2000)
 }
 
-function makeDessert(e) {
+function makeDessert() {
   //add code here to decide which make... function to call
   //based on which link was clicked
-  if (this.innerText == "Make Cake") {
-    console.log("make cake.")
-    var makeCake = makeCake.bind(this)
+  if(this.parentNode.id === "cake") {
+    makeCake.call(this.parentNode)
   } else {
-    console.log("make pie.")
+    makePie.call(this.parentNode)
   }
 }
 
