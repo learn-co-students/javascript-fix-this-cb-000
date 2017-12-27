@@ -62,7 +62,7 @@ function cool(updateFunction) {
 function makeDessert() {
   //add code here to decide which make... function to call
   //based on which link was clicked
-  
+
 }
 
 function serve(message, customer) {
@@ -77,5 +77,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
     cookLinks[i].addEventListener("click", makeDessert)
   }
 });
-
-cake.decorate()
