@@ -25,13 +25,15 @@ var pie = {
 
 function makeCake() {
   var updateCakeStatus = updateStatus.bind(this)
-  updateCakeStatus("Prep")
+  updateCakeStatus("yop")
   mix.call(cake, updateCakeStatus)
 }
 
 function makePie() {
-  var updatePieStatus;
-  mix(updatePieStatus)
+  var updatePieStatus = updateStatus.bind(this)
+  updatePieStatus("yop")
+  pie.decorate = cake.decorate.bind(pie)
+  mix.call(pie, updatePieStatus)
 }
 
 function updateStatus(statusText) {
