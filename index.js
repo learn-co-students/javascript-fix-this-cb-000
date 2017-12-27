@@ -62,7 +62,7 @@ function cool(updateFunction) {
 function makeDessert(e) {
   //add code here to decide which make... function to call
   //based on which link was clicked
-  console.log(this)
+  console.log(this.innerText)
 }
 
 function serve(message, customer) {
@@ -73,7 +73,7 @@ function serve(message, customer) {
 document.addEventListener("DOMContentLoaded", function(event) {
   //you shouldn't need to alter this function
   var cookLinks = document.getElementsByClassName("js-make")
-  
+
   for(var i=0; i<cookLinks.length; i++) {
     cookLinks[i].addEventListener("click", makeDessert)
   }
