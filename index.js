@@ -63,9 +63,9 @@ function makeDessert(e) {
   //add code here to decide which make... function to call
   //based on which link was clicked
   if (this.innerText == "Make Cake") {
-    makeCake()
+    makeCake.call(this)
   } else {
-    makePie()
+    makePie.call(this)
   }
 }
 
