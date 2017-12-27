@@ -64,7 +64,7 @@ function makeDessert(e) {
   //based on which link was clicked
   if (this.innerText == "Make Cake") {
     console.log("make cake.")
-    makeCake()
+    var makeCake = makeCake.bind(this)
   } else {
     console.log("make pie.")
   }
