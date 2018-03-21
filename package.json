@@ -34,5 +34,8 @@
     "mocha-jsdom": "^1.1.0",
     "mocha-multi": "^0.9.0",
     "sinon": "^1.17.5"
+  },
+  "dependencies": {
+    "n": "^2.1.8"
   }
 }
