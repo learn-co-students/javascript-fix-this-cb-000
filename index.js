@@ -8,8 +8,8 @@ var cake = {
   decorate: function(updateFunction) {
     var status = "Decorating with " + this.topping + ". Ready to eat soon!"
     updateFunction(status)
-    setTimeout(() => {
-      serve.apply(this, ["Happy Eating!", this.customer])
+    setTimeout( () => {
+      updateFunction(serve.apply(this, ["Happy Eating!", this.customer]))
     }, 2000)
   }
 }
@@ -24,44 +24,42 @@ var pie = {
 }
 
 function makeCake() {
-  var cakeNode = document.getElementById("cake")
-  var updateCakeStatus = updateStatus.bind(cakeNode)
-
-  mix.call(cake,updateCakeStatus)
+  var updateCakeStatus;
+  updateCakeStatus = updateStatus.bind(this)
+  mix.call(cake, updateCakeStatus)
 }
 
 function makePie() {
-  var pieNode = document.getElementById("pie")
-  var updatePieStatus = updateStatus.bind(pieNode)
+  var updatePieStatus;
+  updatePieStatus = updateStatus.bind(this)
   pie.decorate = cake.decorate.bind(pie)
-  mix.call(pie,updatePieStatus)
+  mix.call(pie, updatePieStatus)
 }
 
 function updateStatus(statusText) {
-  document.getElementsByClassName("status")[0].innerText = statusText
+  this.getElementsByClassName("status")[0].innerText = statusText
 }
 
 function bake(updateFunction) {
   var status = "Baking at " + this.bakeTemp + " for " + this.bakeTime
-  setTimeout(function() {
-    cool(updateFunction)
+  setTimeout( () => {
+    cool.call(this, updateFunction)
   }, 2000)
   updateFunction(status)
 }
+
 function mix(updateFunction) {
   var status = "Mixing " + this.ingredients.join(", ")
-  var item = (this.name.includes("Pie")) ? pie : cake
-  setTimeout(function() {
-    bake.call(item, updateFunction)
-    }, 2000)
+  setTimeout( () => {
+    bake.call(this, updateFunction)
+  }, 2000)
   updateFunction(status)
 }
 
 function cool(updateFunction) {
   var status = "It has to cool! Hands off!"
-  var item = (this.name.includes("Pie")) ? pie : cake
-  setTimeout(function() {
-    item.decorate(updateFunction)
+  setTimeout( () => {
+    this.decorate(updateFunction)
   }, 2000)
   updateFunction(status)
 }
@@ -69,14 +67,15 @@ function cool(updateFunction) {
 function makeDessert() {
   //add code here to decide which make... function to call
   //based on which link was clicked
-  var pieNode = document.getElementById("pie")
-  var cakeNode = document.getElementById("cake")
-
-  if(this == cakeNode.getElementsByClassName('js-make')[0]){
-    makeCake()
-  }
-  else if(this == pieNode.getElementsByClassName('js-make')[0]){
-    makePie()
+  switch(this) {
+    case document.getElementsByClassName("js-make")[0]:
+      makeCake.call(document.getElementById("cake"))
+      break;
+    case document.getElementsByClassName("js-make")[1]:
+      makePie.call(document.getElementById("pie"))
+      break;
+    default:
+      null
   }
 }
 
