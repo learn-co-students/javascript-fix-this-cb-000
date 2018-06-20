@@ -65,7 +65,7 @@ function makeDessert() {
 }
 
 function serve(message, customer) {
-  //you shouldn't need to alter this function
+  //you shouldn't need to alter this function.
   return(customer + ", your " + this.name + " is ready to eat! " + message)
 }
 
