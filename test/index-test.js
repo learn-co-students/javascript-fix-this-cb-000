@@ -5,6 +5,7 @@ describe('index', function() {
     })
   })
 
+
   describe('makeDessert', function() {
     it('calls the right function', function() {
       var pieNode = document.getElementById("pie")
