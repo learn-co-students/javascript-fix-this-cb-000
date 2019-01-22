@@ -7,12 +7,22 @@ var cake = {
   customer: "Tommy",
   decorate: function(updateFunction) {
     var status = "Decorating with " + this.topping + ". Ready to eat soon!"
-//console.log(this)
     updateFunction(status)
-    setTimeout(() => {
-      updateFunction(serve.bind(this, "Happy Eating!", this.customer))
-    }, 2000)
+    var srv = serve.call(this, "Happy Eating!", this.customer)
+    setTimeout(() => { updateFunction(srv) }, 2000)
   }
+}
+
+function serve(message, customer) {
+  //you shouldn't need to alter this function
+  return(customer + ", your " + this.name + " is ready to eat! " + message)
+}
+
+function bake(updateFunction) {
+  var status = "Baking at " + this.bakeTemp + " for " + this.bakeTime
+//console.log(this)
+  setTimeout(() => { cool.call(this, updateFunction) }, 2000)
+  updateFunction(status)
 }
 
 var pie = {
@@ -70,11 +80,6 @@ function cool(updateFunction) {
 //console.log(this)
   setTimeout(() => { this.decorate(updateFunction) }, 2000);
   updateFunction(status)
-}
-
-function serve(message, customer) {
-  //you shouldn't need to alter this function
-  return(customer + ", your " + this.name + " is ready to eat! " + message)
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
