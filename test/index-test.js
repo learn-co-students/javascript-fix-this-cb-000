@@ -43,6 +43,7 @@ describe('index', function() {
     it('borrows the decorate function from cake', function() {
       var spy = expect.spyOn(cake.decorate, "bind").andCallThrough()
       makePie.call(document.getElementById("pie"))
+      console.log(pie);
       expect(pie.decorate).toExist()
       expect(spy).toHaveBeenCalledWith(pie)
     })
