@@ -1,4 +1,4 @@
-describe('index', function() {
+ describe('index', function() {
   describe('cake', function() {
     it('has a decorate function', function() {
       expect(cake.decorate).toExist()

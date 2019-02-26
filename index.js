@@ -24,44 +24,50 @@ var pie = {
 }
 
 function makeCake() {
-  var updateCakeStatus;
-  mix(updateCakeStatus)
+  var updateCakeStatus = (statusText) => {document.getElementsByClassName("status")[0].innerText = statusText};
+  mix.call(cake, updateCakeStatus)
 }
 
+pie.decorate = cake.decorate.bind(pie) ;
+
 function makePie() {
-  var updatePieStatus;
-  mix(updatePieStatus)
+  var updatePieStatus = (statusText) => {document.getElementsByClassName("status")[1].innerText = statusText};
+  mix.call(pie, updatePieStatus) ;
 }
 
 function updateStatus(statusText) {
-  this.getElementsByClassName("status")[0].innerText = statusText
+  document.getElementsByClassName("status")[0].innerText = statusText
 }
 
 function bake(updateFunction) {
   var status = "Baking at " + this.bakeTemp + " for " + this.bakeTime
-  setTimeout(function() {
-    cool(updateFunction)
-  }, 2000)
+  updateFunction(status)
+  console.log(`bake has ${this.name}`)
+  var next = cool.bind(this) ;
+  setTimeout(next(updateFunction), 2000) ;
+
 }
 
 function mix(updateFunction) {
   var status = "Mixing " + this.ingredients.join(", ")
-  setTimeout(function() {
-    bake(updateFunction)
-  }, 2000)
   updateFunction(status)
+  console.log(`mix has ${this.name}`)
+  var next = bake.bind(this) ;
+  setTimeout(next(updateFunction), 2000)
+
 }
 
 function cool(updateFunction) {
+  console.log(`cool has ${this.name}`)
   var status = "It has to cool! Hands off!"
-  setTimeout(function() {
-    this.decorate(updateFunction)
-  }, 2000)
+  updateFunction(status)
+  var next = cake.decorate.bind(this) ;
+  setTimeout(next(updateFunction), 2000)
 }
 
-function makeDessert() {
-  //add code here to decide which make... function to call
-  //based on which link was clicked
+function makeDessert(e) {
+  console.log(this)
+e.path[0].id == "make-cake" ? makeCake() : makePie() ;
 }
 
 function serve(message, customer) {
