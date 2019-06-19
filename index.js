@@ -6,6 +6,7 @@ var cake = {
   bakeTime: "45 minutes",
   customer: "Tommy",
   decorate: function(updateFunction) {
+    updateFunction.bind(this)
     var status = "Decorating with " + this.topping + ". Ready to eat soon!"
     updateFunction(status)
     setTimeout(function() {
@@ -62,6 +63,11 @@ function cool(updateFunction) {
 function makeDessert() {
   //add code here to decide which make... function to call
   //based on which link was clicked
+  if (this.text === 'Make Cake'){
+    makeCake()
+  } else{
+    makePie()
+  }
 }
 
 function serve(message, customer) {
